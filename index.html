@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>必要資金チェッカー</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="必要資金">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <section id="banks" aria-label="銀行別"></section>
+  <section class="total" id="totals"></section>
+
+  <section aria-label="請求項目">
+    <div class="list-head"><h2>請求項目</h2><button id="addBtn" class="primary small">＋ 追加</button></div>
+    <div id="list"></div>
+  </section>
+
+  <section class="backup">
+    <h2>バックアップ</h2>
+    <p class="note">請求項目のみ。銀行残高は含まれません。</p>
+    <div class="row">
+      <button id="exportBtn">書き出し</button>
+      <button id="importBtn">読み込み</button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </div>
+  </section>
+</main>
+
+<div id="sheet" class="overlay" hidden>
+  <form class="sheet" id="form" novalidate>
+    <h3 id="sheetTitle">項目</h3>
+    <label>名称<input id="fName" type="text" maxlength="40" autocomplete="off" enterkeyhint="next"></label>
+    <label>銀行<select id="fBank"></select></label>
+    <label>請求金額(円)<input id="fAmount" type="text" inputmode="numeric" autocomplete="off" placeholder="未入力"></label>
+    <p class="err" id="fErr" role="alert"></p>
+    <div class="row">
+      <button type="submit" class="primary">保存</button>
+      <button type="button" id="fConfirm">確認済み</button>
+    </div>
+    <div class="row">
+      <button type="button" id="fCancel">閉じる</button>
+      <button type="button" id="fDelete" class="danger">削除</button>
+    </div>
+  </form>
+</div>
+
+<script src="logic.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
